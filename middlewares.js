@@ -3,4 +3,9 @@ function loggerMiddleware(req, res, next) {
   next();
 }
 
-module.exports = loggerMiddleware;
+function timeMiddleware(req, res, next) {
+  req.time = new Date().toString();
+  next();
+}
+
+module.exports = { loggerMiddleware, timeMiddleware };

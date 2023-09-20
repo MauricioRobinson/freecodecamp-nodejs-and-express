@@ -1,6 +1,6 @@
 require('dotenv').config();
 let express = require('express');
-const loggerMiddleware = require('./middlewares');
+const { loggerMiddleware, timeMiddleware } = require('./middlewares');
 console.log('Hello World');
 let app = express();
 
@@ -23,6 +23,10 @@ app.get('/json', function (req, res) {
   } else {
     res.json(obj.message);
   }
+});
+
+app.get('/now', timeMiddleware, function (req, res) {
+  res.json({ time: req.time });
 });
 
 module.exports = app;
