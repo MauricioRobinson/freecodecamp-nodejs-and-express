@@ -2,8 +2,10 @@ require('dotenv').config();
 let express = require('express');
 const { loggerMiddleware, timeMiddleware } = require('./middlewares');
 console.log('Hello World');
+const bodyParser = require('body-parser');
 let app = express();
 
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/public', express.static(__dirname + '/public'));
 
 app.use(loggerMiddleware);
